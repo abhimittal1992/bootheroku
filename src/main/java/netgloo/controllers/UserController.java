@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.heroku.demo.RecordRepository;
+
 import netgloo.configs.UserRepository;
 import netgloo.models.User;
 
@@ -15,8 +17,14 @@ import netgloo.models.User;
 @RequestMapping(value="/user")
 public class UserController {
 
-  @Autowired
   private UserRepository repository;
+  
+  
+  @Autowired
+  public UserController(UserRepository repository) {
+      this.repository = repository;
+  }
+
   
   @RequestMapping(value="/delete")
   @ResponseBody
